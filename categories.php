@@ -59,6 +59,44 @@ function get_cat_name($cat_id) {
 
 </header>
 
+// wp_delete_post
+
+<?php wp_delete_post ( $post_id, true); ?>
+
+//Wp_insert_post
+
+<?php
+if (isset($_POST['new_post']) == '1') {
+    $post_title = $_POST['post_title'];
+    $post_category = $POST['cat'];
+    $post_content = $_POST['post_content'];
+
+    $new_post = array(
+        'ID' => '',
+        'post_author' => $user->ID,
+        'post_category' => array ($post_category),
+        'post_content' => $post_content,
+        'post_title' => $post_title,
+        'post_status ' => 'publish'  
+    );
+
+    $post_id = wp_insert_post($new_post);
+
+    //This will redirect you to the newly created post
+    $post = get_post($post_id);
+    wp_redirect($post->guid);
+    
+}
+?>
+
+// Others
+
+//get_the_ID
+
+<?php $postid = get_the_ID(); ?>
+<?php
+    echo '<input type="hidden" name="activepost" id'
+
 
             
 
